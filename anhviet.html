@@ -3,43 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            font-size: 30px;
+        }
+
+    </style>
 </head>
 <body>
 
-<div style="font-size: 20px">
-<h1> Tu dien Anh Viet</h1>
+<div style="font-size: 40px">
+    <h1> Tu dien Anh Viet</h1>
 
-Nhap tu can tra: &nbsp;
-<input type="text" id="nhapTucanTra" placeholder="Nhap tu"> &nbsp; <input type="button" onclick="translateIT()" value="Translate">
+    Nhap tu can tra: &nbsp;
+    <input type="text" id="nhapTucanTra" placeholder="Nhap tu"> &nbsp; <input type="button" onclick="translateIT()"
+                                                                              value="Translate">
+    <br>
+    <p id="results"></p>
 
 </div>
 
 <script>
 
 
-//    Phát triển một ứng dụng từ điển đơn giản. Ứng dụng cho phép tra cứu các từ tiếng Anh sang tiếng Việt. Danh sách các từ được lưu trữ trong các mảng.
-//
-//        Hướng dẫn
-//    Bước 1: Tạo một trang web với một form đơn giản cho phép người dùng nhập từ cần tìm kiếm.
-//
-//        Bước 2: Viết mã Javascript
-//
-//    Tạo 2 mảng có độ dài bằng nhau để lưu trữ danh sách các từ. Mảng 1 lưu trữ các từ tiếng Anh, mảng 2 lưu trữ các từ tiếng Việt tương ứng.
-//        Khi tìm kiếm, tìm vị trí của từ tiếng Anh trong mảng 1. Nếu tìm thấy thì hiển thị từ tiếng Việt ở cùng vị trí trong mảng 2.
-//    Nếu không tìm thấy thì hiển thị thông báo không tìm thấy.
-//
+    //    Phát triển một ứng dụng từ điển đơn giản. Ứng dụng cho phép tra cứu các từ tiếng Anh sang tiếng Việt. Danh sách các từ được lưu trữ trong các mảng.
+    //
+    //        Hướng dẫn
+    //    Bước 1: Tạo một trang web với một form đơn giản cho phép người dùng nhập từ cần tìm kiếm.
+    //
+    //        Bước 2: Viết mã Javascript
+    //
+    //    Tạo 2 mảng có độ dài bằng nhau để lưu trữ danh sách các từ. Mảng 1 lưu trữ các từ tiếng Anh, mảng 2 lưu trữ các từ tiếng Việt tương ứng.
+    //        Khi tìm kiếm, tìm vị trí của từ tiếng Anh trong mảng 1. Nếu tìm thấy thì hiển thị từ tiếng Việt ở cùng vị trí trong mảng 2.
+    //    Nếu không tìm thấy thì hiển thị thông báo không tìm thấy.
+    //
+
     "use strict";
     let listEng = ["Hello", "What", "Where", "When", "Why", "Who", "How"];
-    let listViet = ["Xin chao","Cai gi?","O Dau?","Khi nao?","Tai sao?", "La ai?", "Nhu the nao?"];
+    let listViet = ["Xin chao", "Cai gi?", "O Dau?", "Khi nao?", "Tai sao?", "La ai?", "Nhu the nao?"];
+    document.write("Cac tu tieng anh duoc ho tro: " + listEng.join(", "));
 
-    function translateIT(){
-        let needTranslate = document.getElementById("nhapTucanTra").value;
-        
+    function translateIT() {
+        //debugger;
+        let getEnd = document.getElementById("nhapTucanTra");
+        let putVie = document.getElementById("results");
 
+        let needTranslate = getEnd.value;
+        let count = 1;
+        for (let i = 0; i < listEng.length; i++) {
+            let checkMatch = needTranslate.toLowerCase() == listEng[i].toLowerCase();
+            if (checkMatch) {
+                putVie.innerHTML = "Nghia cua tu " + listEng[i] + " la: " + listViet[i];
+                break;
+            }
+            if (count == (listEng.length - 1) && !checkMatch) {
+                putVie.innerHTML = "Chua co tu nay trong tu dien.";
+            }
+            count++;
+        }
 
     }
-
-
 
 
 </script>
